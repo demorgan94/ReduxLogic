@@ -5,7 +5,7 @@ export interface WeatherState {
 
 export interface WeatherAction {
     type: string;
-    payload: any;
+    payload?: any;
 }
 
-export type WeathertTypes = WeathertAction;
+export type WeatherTypes = WeathertAction;

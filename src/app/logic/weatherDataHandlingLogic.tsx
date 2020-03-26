@@ -1,13 +1,9 @@
 import * as types from '../types/weatherTypes'
 import { createLogic } from 'redux-logic'
 import axios from 'axios'
+import { WeatherAction } from '../actions/weather';
 
 const appId = "6123f0d4550276077ceb83ab0a1bdacc";
-
-interface ProcessAction {
-    type: string,
-    payload?: any
-}
 
 const getWeatherDataLogic = createLogic({
     type: types.GET_WEATHER_FOR_CITY,
@@ -19,7 +15,7 @@ const getWeatherDataLogic = createLogic({
         failType: types.GET_WEATHER_FOR_CITY_FAILURE
     },
 
-    async process(action: ProcessAction) {
+    async process(action: WeatherAction) {
         console.log('started process with action type: ' + action.type);
         console.log('started process with action payload: ' + action.payload);
 

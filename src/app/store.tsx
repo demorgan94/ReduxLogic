@@ -3,8 +3,9 @@ import { createLogicMiddleware } from 'redux-logic'
 import axios from 'axios'
 import rootReducer from './reducers'
 import rootLogic from './logic/index'
+import { WeatherTypes } from './actions/weather'
 
-const deps = {
+const deps: WeatherTypes = {
     httpClient: axios
 }
 
