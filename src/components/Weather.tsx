@@ -4,16 +4,21 @@ import { Card } from 'react-bootstrap'
 /** Redux */
 import { useSelector } from 'react-redux'
 import { RootState } from '../app/reducers'
+import { WeatherAction } from '../app/actions/weather'
 
-const Weather = () => {
+const Weather: React.FC = () => {
 
-    const [city, setCity] = useState<string>("");
+    const [city, setCity] = useState<WeatherAction>();
 
-    const cityState = useSelector((state: RootState) => state.weather.weatherSummary)
+    const cityState = useSelector((state: RootState) => state.weather.weatherSummary);
 
     useEffect(() => {
         setCity(city);
-    }, [cityState])
+    }, [cityState]);
+
+    const handleClick = (city: string) => {
+
+    }
 
     return (
         <div>
