@@ -33,12 +33,12 @@ const Weather: React.FC = () => {
             <Container>
                 <Row className="justify-content-center">
                     <Col md={8} >
-                        <Card className="text-center">
+                        <Card className="text-center mt-5">
                             <Card.Body>
                                 <Card.Title>Weather App</Card.Title>
                                 <Card.Text>Click on a city to show the weather there</Card.Text>
                                 <Button variant="primary" className="mx-3" onClick={() => handleClick(cityTypes.London)}>London</Button>
-                                <Button variant="warning" onClick={() => handleClick(cityTypes.New_York)}>New York</Button>
+                                <Button variant="info" onClick={() => handleClick(cityTypes.New_York)}>New York</Button>
                                 <Button variant="success" className="mx-3" onClick={() => handleClick(cityTypes.Paris)}>Paris</Button>
                                 <Button variant="danger" onClick={() => handleClick(cityTypes.Mexico)}>Mexico City</Button>
                                 <Card.Text className="mt-5">Selected City: {city}</Card.Text>
