@@ -16,10 +16,6 @@ const Weather: React.FC = () => {
     const weatherState = useSelector((state: RootState) => state.weather);
     const requestState = useSelector((state: RootState) => state.request);
 
-    useEffect(() => {
-
-    }, [city]);
-
     const handleClick = (city: string) => {
         setCity(city);
         dispatch(incrementNumberOfRequestsMade());
