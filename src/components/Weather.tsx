@@ -1,29 +1,55 @@
-import React, { useState, useEffect } from 'react'
-import { Card } from 'react-bootstrap'
+import React, { useState, useEffect, Fragment } from 'react'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 /** Redux */
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
 import { RootState } from '../app/reducers'
-import { WeatherAction } from '../app/actions/weather'
+import { getWheatherData, incrementNumberOfRequestsMade } from '../app/actions'
+import cityTypes from '../app/types/cityTypes'
 
 const Weather: React.FC = () => {
 
-    const [city, setCity] = useState<WeatherAction>();
+    const [city, setCity] = useState<string>();
 
-    const cityState = useSelector((state: RootState) => state.weather.weatherSummary);
+    const dispatch = useDispatch();
+
+    const weatherState = useSelector((state: RootState) => state.weather);
+    const requestState = useSelector((state: RootState) => state.request);
 
     useEffect(() => {
-        setCity(city);
-    }, [cityState]);
+
+    }, [city]);
 
     const handleClick = (city: string) => {
+        setCity(city);
+        dispatch(incrementNumberOfRequestsMade());
+        dispatch(getWheatherData(city));
 
+        console.log(weatherState)
     }
 
     return (
-        <div>
-            <h1>Weather</h1>
-        </div>
+        <Fragment>
+            <Container>
+                <Row className="justify-content-center">
+                    <Col md={8} >
+                        <Card className="text-center">
+                            <Card.Body>
+                                <Card.Title>Weather App</Card.Title>
+                                <Card.Text>Click on a city to show the weather there</Card.Text>
+                                <Button variant="primary" className="mx-3" onClick={() => handleClick(cityTypes.London)}>London</Button>
+                                <Button variant="warning" onClick={() => handleClick(cityTypes.New_York)}>New York</Button>
+                                <Button variant="success" className="mx-3" onClick={() => handleClick(cityTypes.Paris)}>Paris</Button>
+                                <Button variant="danger" onClick={() => handleClick(cityTypes.Mexico)}>Mexico City</Button>
+                                <Card.Text className="mt-5">Selected City: {city}</Card.Text>
+                                <Card.Text>Weather in Selected City: {weatherState.weatherSummary}</Card.Text>
+                                <Card.Text>Number of Requests Made: {requestState.numberOfRequests}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </Fragment>
     )
 }
 

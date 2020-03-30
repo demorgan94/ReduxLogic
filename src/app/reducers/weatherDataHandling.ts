@@ -19,7 +19,7 @@ function weatherDataHandling(state = initialState, { type, payload }: WeatherAct
             return {
                 ...state,
                 isFetching: false,
-                weatherSummary: payload[0].description
+                weatherSummary: payload.weather[0].description
             }
 
         case types.GET_WEATHER_FOR_CITY_FAILURE:

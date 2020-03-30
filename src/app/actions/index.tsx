@@ -1,7 +1,8 @@
 import * as types from '../types/weatherTypes'
 import { WeatherAction } from './weather';
+import { RequestAction } from './requests';
 
-export const incrementNumberOfRequestsMade = () => ({
+export const incrementNumberOfRequestsMade = (): RequestAction => ({
     type: types.INCREMENT_NUMBER_OF_REQUESTS_MADE
 });
 
